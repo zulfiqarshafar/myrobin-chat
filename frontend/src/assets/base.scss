@@ -1,0 +1,51 @@
+$color-main: black;
+
+:root {
+  --color-main: #ffffff;
+  --color-primary: #5db075;
+  --color-secondary: #f6f6f6;
+  --color-border: #e8e8e8;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  position: relative;
+  font-weight: normal;
+}
+
+body {
+  background-color: rgb(233, 233, 233);
+  min-height: 100vh;
+  line-height: 19px;
+  font-family: Inter, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "Helvetica Neue",
+    sans-serif;
+  font-size: 16px;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1 {
+  font-size: 30px;
+  font-weight: 600;
+  line-height: 36px;
+}
+
+main {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  padding: 16px;
+}
+
+header {
+  text-align: center;
+}
+
+section {
+  margin-top: 32px;
+}
