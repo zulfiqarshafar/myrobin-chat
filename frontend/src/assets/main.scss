@@ -1,9 +1,25 @@
 @import "./base.scss";
 
 #app {
-  max-width: 375px;
+  display: flex;
+  justify-content: center;
+  max-width: 720px;
   height: 100vh;
   margin: auto;
   padding-top: 44px;
   background-color: white;
+}
+
+.primary-btn {
+  background: var(--color-primary);
+  color: var(--color-main);
+  border: none;
+  font-weight: 600;
+  font-size: 16px;
+  transition: 0.3s;
+
+  &:hover {
+    cursor: pointer;
+    opacity: 0.8;
+  }
 }
