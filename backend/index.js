@@ -1,6 +1,5 @@
 const express = require("express");
 const path = require("path");
-const { fileURLToPath } = require("url");
 const cors = require("cors");
 const http = require("http");
 const mongoose = require("mongoose");
@@ -10,8 +9,6 @@ const ChatRoomRouter = require("./routes/ChatRoomRouter.js");
 require("dotenv").config();
 
 // Config
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
 const port = process.env.PORT || 8080;
 
 const app = express();
