@@ -5,7 +5,9 @@
       <form @submit.prevent="onSubmit">
         <input type="text" placeholder="Username" v-model="username" />
         <input type="text" placeholder="RoomID" v-model="roomId" />
-        <button :disabled="isDisabled" class="primary-btn">JOIN</button>
+        <button type="submit" :disabled="isDisabled" class="primary-btn">
+          JOIN
+        </button>
       </form>
       <Alert v-if="isError" alertType="danger">{{ errorMessage }}</Alert>
     </section>
@@ -13,8 +15,8 @@
 </template>
 
 <script>
-import Alert from "../components/Alert.vue";
 import router from "../router";
+import Alert from "../components/Alert.vue";
 
 export default {
   data() {
@@ -75,7 +77,6 @@ form {
 
 input[type="text"] {
   margin-bottom: 16px;
-  text-transform: lowercase;
 }
 
 button {

@@ -1,11 +1,8 @@
 const mongoose = require("mongoose");
 
 const chatRoomSchema = mongoose.Schema({
-  roomId: { type: String, required: true },
-  users: [String],
-  meessages: [
-    { user: String, content: String, date: { type: Date, default: Date.now } },
-  ],
+  roomId: { type: String, required: true, trim: true },
+  users: [{ type: String, trim: true }],
 });
 
 const ChatRoom = mongoose.model("ChatRoom", chatRoomSchema);

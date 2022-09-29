@@ -1,7 +1,7 @@
 <template>
   <main>
     <header>
-      <router-link to="/" class="exit-btn">Exit</router-link>
+      <button class="exit-btn" @click="goBack">Exit</button>
       <h1 class="roomId">{{ roomId }}</h1>
     </header>
     <section>
@@ -16,72 +16,78 @@
       </div>
     </section>
     <footer>
-      <div class="message-input-container">
-        <input type="text" placeholder="Type message" />
-        <button class="send-btn primary-btn">
+      <form @submit.prevent="onSubmit" class="message-input-container">
+        <input v-model="content" type="text" placeholder="Type message" />
+        <button type="submit" class="send-btn primary-btn">
           <img src="../assets/images/send-icon.png" />
         </button>
-      </div>
+      </form>
     </footer>
   </main>
 </template>
 
 <script>
+import router from "../router";
+import SocketService from "../services/SocketService.js";
 import ChatMessage from "../components/ChatMessage.vue";
 
 export default {
   data() {
     return {
-      user: "User 1",
-      roomId: "123",
-      chatMessages: [
-        {
-          id: "6",
-          user: "User 1",
-          content: "I am good",
-          time: "10.09 AM",
-          date: "28/09/2022",
-        },
-        {
-          id: "5",
-          user: "User 2",
-          content: "What about you?",
-          time: "10.09 AM",
-          date: "28/09/2022",
-        },
-        {
-          id: "4",
-          user: "User 2",
-          content: "Nothing much",
-          time: "10.09 AM",
-          date: "28/09/2022",
-        },
-        {
-          id: "3",
-          user: "User 1",
-          content: "How's it going?",
-          time: "10.07 AM",
-          date: "28/09/2022",
-        },
-        {
-          id: "2",
-          user: "User 2",
-          content: "Hi there",
-          time: "10.04 AM",
-          date: "28/09/2022",
-        },
-        {
-          id: "1",
-          user: "User 1",
-          content: "Hello",
-          time: "10.02 AM",
-          date: "28/09/2022",
-        },
-      ],
+      user: this.$cookies.get("myrobinusername"),
+      roomId: this.$route.params.id,
+      content: null,
+      chatMessages: [],
     };
   },
   components: {
     ChatMessage,
+  },
+  methods: {
+    getChatMessages(data) {
+      this.chatMessages = data;
+    },
+    onSubmit() {
+      SocketService.sendMessage({
+        roomId: this.roomId,
+        user: this.user,
+        content: this.content,
+      });
+      this.content = null;
+    },
+    async goBack() {
+      await fetch(`${import.meta.env.VITE_API_ENDPOINT}/api/room/exit`, {
+        method: "POST",
+        credentials: "include",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          username: this.user.toLowerCase(),
+          roomId: this.roomId.toLowerCase(),
+        }),
+      })
+        .then(async (response) => {
+          const res = await response.json();
+          if (response.ok) return res;
+          throw Error(res.msg);
+        })
+        .then((data) => {
+          SocketService.disconnect();
+          router.push({ name: "home" });
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+  },
+  created() {
+    if (!this.user) {
+      router.push({ path: "/", replace: true });
+    } else {
+      SocketService.setupSocketConnection(this.roomId);
+      SocketService.getChatMessages(this.getChatMessages);
+    }
   },
 };
 </script>
@@ -90,7 +96,16 @@ export default {
 .exit-btn {
   position: absolute;
   left: 0;
+  background: none;
+  border: none;
   font-size: 18px;
+  font-weight: 600;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  &:hover {
+    opacity: 0.8;
+  }
 }
 
 .chat-message-container {
