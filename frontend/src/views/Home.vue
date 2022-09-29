@@ -1,6 +1,9 @@
 <template>
   <main>
-    <header><h1>Join Chatroom</h1></header>
+    <header>
+      <img class="logo" src="../assets/images/logo.png" alt="Logo" />
+      <h1>Join Chatroom</h1>
+    </header>
     <section>
       <form @submit.prevent="onSubmit">
         <input type="text" placeholder="Username" v-model="username" />
@@ -66,13 +69,18 @@ export default {
 </script>
 
 <style scoped lang="scss">
-main {
-  backdrop-filter: blur(12px);
+header {
+  flex-direction: column;
+  .logo {
+    width: 35%;
+    margin-bottom: 15px;
+  }
 }
 
 form {
   display: flex;
   flex-wrap: wrap;
+  margin-top: 5%;
 }
 
 input[type="text"] {

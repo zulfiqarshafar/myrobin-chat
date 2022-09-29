@@ -30,9 +30,9 @@ app.use(cors(corsOptions));
 const connectionString = process.env.MONGODB_URI;
 mongoose.connect(connectionString);
 
-mongoose.connection.once("open", () => {
-  console.log("DB Connected");
-});
+// mongoose.connection.once("open", () => {
+//   console.log("DB Connected");
+// });
 
 // Routes
 app.use("/api/room", ChatRoomRouter);

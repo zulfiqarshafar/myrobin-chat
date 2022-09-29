@@ -118,8 +118,19 @@ export default {
 }
 
 .message-input-container {
+  background-color: var(--color-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 100px;
+  transition: 0.5s;
+
+  &:focus-within {
+    border: 1px solid darken(#e8e8e8, 50%);
+  }
+
   input[type="text"] {
-    border-radius: 100px;
+    border: none;
+    width: calc(100% - 38px);
+    background: none;
   }
 
   .send-btn {

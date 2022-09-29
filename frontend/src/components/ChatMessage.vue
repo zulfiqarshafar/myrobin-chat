@@ -7,7 +7,7 @@
       <p>
         {{ chatMessage.content }}
       </p>
-      <div class="chat-message-time">{{ chatMessage.time }}</div>
+      <div class="chat-message-time">{{ formattedTime }}</div>
     </div>
   </div>
 </template>
@@ -20,6 +20,10 @@ export default {
     user: String,
   },
   computed: {
+    formattedTime() {
+      const createdAt = new Date(this.chatMessage.createdAt);
+      return `${createdAt.getHours()}.${createdAt.getMinutes()}`;
+    },
     messageType() {
       return this.user === this.chatMessage.user ? "primary" : "secondary";
     },
@@ -46,6 +50,7 @@ export default {
     border: 1px solid var(--color-border);
     font-size: 14px;
     line-height: 17px;
+    box-shadow: 0 7px 15px -5px rgba(0, 0, 0, 0.4);
 
     .chat-message-time {
       margin-top: 10px;
