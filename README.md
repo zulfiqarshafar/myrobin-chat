@@ -5,11 +5,18 @@ then they could send and receive chat on realtime.
 
 <br />
 
+## Live Preview
+
+Project is lived at <a href="https://myrobin-chat.herokuapp.com/">MyRobin Chat App</a>
+
+<br />
+
 ## Table of Contents
 
 - [Stack](#stack)
 - [Setup](#setup)
   - [Installation](#installation)
+- [Additional Notes](#additionalnotes)
 
 <br />
 
@@ -38,3 +45,7 @@ After cloning, open the command line on project directory then go to 'frontend' 
 ```
 npm run install
 ```
+
+### Additional Notes
+
+There is an additional package.json file and procfile on the root folder. Those files are only used for heroku deployment.
