@@ -3,7 +3,7 @@ const cors = require("cors");
 const http = require("http");
 const mongoose = require("mongoose");
 const { Server } = require("socket.io");
-const SocketServices = require("./services/SocketServices.js");
+const SocketService = require("./services/SocketService.js");
 const ChatRoomRouter = require("./routes/ChatRoomRouter.js");
 require("dotenv").config();
 
@@ -38,6 +38,6 @@ mongoose.connection.once("open", () => {
 app.use("/api/room", ChatRoomRouter);
 
 // Socket io
-io.on("connection", SocketServices);
+io.on("connection", (socket) => SocketService(io, socket));
 
 server.listen(port, () => console.log(`Listening to port: ${port}`));

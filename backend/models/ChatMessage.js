@@ -2,8 +2,9 @@ const mongoose = require("mongoose");
 
 const chatMessageSchema = mongoose.Schema(
   {
-    user: String,
-    content: String,
+    roomId: { type: String, required: true, trim: true },
+    user: { type: String, required: true, trim: true },
+    content: { type: String, required: true },
   },
   {
     timestamps: true,
