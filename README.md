@@ -7,7 +7,7 @@ then they could send and receive chat on realtime.
 
 ## Live Preview
 
-Project is lived at <a href="https://myrobin-chat.herokuapp.com/">MyRobin Chat App</a>
+Project is lived at <a href="https://myrobin-chat.herokuapp.com/" target="_blank">MyRobin Chat App</a>
 
 <br />
 
@@ -16,9 +16,7 @@ Project is lived at <a href="https://myrobin-chat.herokuapp.com/">MyRobin Chat A
 - [Stack](#stack)
 - [Setup](#setup)
   - [Installation](#installation)
-- [Additional Notes](#additionalnotes)
-
-<br />
+- [Additional Notes](#additional-notes)
 
 <br />
 
@@ -26,11 +24,12 @@ Project is lived at <a href="https://myrobin-chat.herokuapp.com/">MyRobin Chat A
 
 This app is built using:
 
-- Vue
+- Vue JS
 - Node JS
 - Express JS
-- Socket.io
+- <a href="https://socket.io/" target="_blank">Socket.IO</a>
 - MongoDB
+- Mongoose
 
 <br />
 
@@ -40,7 +39,7 @@ To run the website locally, you could start by cloning the repo to your local ma
 
 ### Installation
 
-After cloning, open the command line on project directory then go to 'frontend' directory and 'backend' direcotry' to install all dependencies using
+After cloning, open the command line on project directory then go to 'frontend' directory and 'backend' directory to install all dependencies using
 
 ```
 npm run install
