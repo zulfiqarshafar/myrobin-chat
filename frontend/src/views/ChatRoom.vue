@@ -73,7 +73,7 @@ export default {
           throw Error(res.msg);
         })
         .then((data) => {
-          SocketService.disconnect();
+          SocketService.disconnect(this.roomId);
           router.push({ name: "home" });
         })
         .catch((error) => {
