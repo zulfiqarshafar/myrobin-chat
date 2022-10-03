@@ -6,6 +6,7 @@ class SocketioService {
 
   setupSocketConnection(roomId) {
     this.socket = io(import.meta.env.VITE_API_ENDPOINT);
+    this.socket.emit("chatroom:join", roomId);
     this.socket.emit("chatroom:get-messages", roomId);
   }
 
@@ -17,7 +18,8 @@ class SocketioService {
     this.socket.emit("chatroom:post-messages", data);
   }
 
-  disconnect() {
+  disconnect(roomId) {
+    this.socket.emit("chatroom:leave", roomId);
     this.socket.disconnect();
   }
 }
